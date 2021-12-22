@@ -1,1 +1,440 @@
-a
+:root {
+	--background: rgba(240, 73, 38, .97);
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+.logo {
+	height: 65px;
+	width: 350px;
+	margin: 2em 2em 2em 2em;
+}
+
+body {
+	/* display: flex; */
+	margin: 0;
+	background: rgb(255, 255, 255);
+	font-family: "Work Sans", sans-serif;
+	font-weight: 400;
+}
+/* This is for the content below the body. */
+.content {
+	height: 200vh;
+	background-color: whitesmoke;
+	background-blend-mode: multiply;
+	background-size: cover;
+	display: grid;
+	place-items: center;
+}
+
+/*  navigation styles start HERE */
+
+header {
+	background: var(--background);
+	text-align: center;
+	position: fixed;
+	width: 100%;
+	z-index: 999;
+}
+
+.nav-toggle:checked ~ nav {
+	transform: scale(1, 1);
+}
+.nav-toggle:checked ~ nav a {
+	opacity: 1;
+	transition: opacity 250ms ease-in-out 250ms;
+}
+
+.nav-toggle {
+	display: none;
+}
+
+.nav-toggle-label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-left: 1em;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+	display: block;
+	background-color: white;
+	height: 2px;
+	width: 2em;
+	border-radius: 2px;
+	position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+	content: "";
+	position: absolute;
+}
+.nav-toggle-label span::before {
+	bottom: 7px;
+}
+.nav-toggle-label span::after {
+	top: 7px;
+}
+
+nav {
+	position: absolute;
+	text-align: left;
+	top: 100%;
+	left: 0;
+	background: var(--background);
+	width: 100%;
+	transform: scale(1, 0);
+	transform-origin: top;
+	transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	margin-right: 25em;
+}
+
+nav li {
+	/* font-size: x-large; */
+	margin-bottom: 1em;
+	margin-left: 1em;
+}
+
+nav a {
+	color: white;
+	text-decoration: none;
+	font-size: 1.22rem;
+	text-transform: uppercase;
+	opacity: 0;
+	transition: opacity 150ms ease-in-out;
+}
+
+nav a:hover {
+	color: #000;
+}
+
+.map {
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0.5;
+	height: 50%;
+	width: 50%;
+	justify-content: center;
+	align-content: center;
+	margin-left: 25%;
+	margin-top: 100px;
+}
+.map1 {
+	min-width: 80%;
+}
+.map2 {
+	margin-top: 20px;
+}
+
+.container {
+	display: grid;
+	/* grid-template-columns: repeat(2, 0.2fr); */
+	grid-template-columns: repeat(2, minmax(100px, 0.2fr));
+	display: grid;
+	grid-template-rows: 1fr;
+	align-items: center;
+	justify-content: center;
+	gap: 20px 200px;
+}
+.box {
+	max-width: 150%;
+	/* border: 10px solid green; */
+	align-self: center;
+	justify-self: center;
+	/* margin: 50px;
+	max-width: 50%;
+
+	border-radius: 2%;
+	width: 40rem; */
+}
+
+@media screen and (min-width: 800px) {
+	.nav-toggle-label {
+		display: none;
+	}
+
+	header {
+		display: grid;
+		grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+	}
+
+	.logo {
+		grid-column: 1 / 3;
+	}
+	nav {
+		all: unset;
+		grid-column: 3 /4;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+	}
+	nav a {
+		opacity: 1;
+		position: relative;
+	}
+	nav li {
+		margin-left: 3em;
+		margin-bottom: 0;
+	}
+
+	nav ul {
+		display: flex;
+		margin: 10px;
+	}
+
+	nav a::before {
+		content: "";
+		display: block;
+		height: 5px;
+		background: black;
+		position: absolute;
+		top: -0.75em;
+		left: 0;
+		right: 0;
+		transform: scale(0, 1);
+		/* transform-origin: left; */
+		transition: transform ease-in-out 200ms;
+	}
+	nav a:hover::before {
+		transform: scale(1, 1);
+	}
+
+	/* Image hover */
+
+	/* .image-container {
+		display: grid;
+		grid-template-columns: repeat(2, 0.4fr);
+		/* grid-auto-rows: 90px minmax(100px, auto); */
+	/* gap: 0px;
+	margin-left: 25rem; */
+}
+
+/* carousel */
+
+/* Slideshow container */
+.slideshow-container {
+	max-width: 100%;
+	position: relative;
+	margin: 0;
+	padding-top: 9rem;
+}
+
+/* Hide the images by default */
+.mySlides {
+	display: none;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	margin-top: -22px;
+	padding: 16px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+	color: #f2f2f2;
+	font-size: 15px;
+	padding: 8px 12px;
+	position: absolute;
+	bottom: 8px;
+	width: 100%;
+	text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+	color: #f2f2f2;
+	font-size: 12px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+	background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+	from {
+		opacity: 0.4;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity: 0.4;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.text-location {
+	text-align: center;
+	font-size: 6vh;
+}
+
+/* .grid > div:nth-child(1) {
+	grid-column: 1/4;
+	grid-row: 1/4;
+}
+.grid > div:nth-child(2) {
+	grid-column: 2/2;
+	grid-row: 2/2;
+}
+.grid > div:nth-child(3) {
+	grid-column: 2/2;
+	grid-row: 2/2;
+}
+.grid > div:nth-child(4) {
+	grid-column: 4/4;
+	grid-row: 4/4;
+} */
+
+.footer-container {
+	background-color: rgb(255, 248, 243)
+}
+.footer {
+	color: rgb(68, 62, 62);
+	width: 100;
+
+	display: grid;
+	margin: 10% 15% 0% 25%;
+}
+
+/* Popup Form Button */
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+/*hey dante..I am watching you on the visual studio but I am on call with someone*/
+
+/* Yep I saw */
+
+/* Below this line is Opulent HOMES CSS */
+
+.home-image-container {
+	display: flex;
+	justify-content: center;
+}
+
+.home-image1 {
+	margin-top: 9rem;
+	max-width: ;
+}
+
+.hover-image-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 5rem;
+}
+
+.hover-image:hover {
+	transform: scale(1.25);
+}
+
+.hover-triple-container {
+	display: flex;
+	justify-content: center;
+	margin-left: 20%;
+	margin-right: 20%;
+	padding: 100px;
+	margin-top: 3rem;
+}
+
+.triple-image {
+	margin: 0px 12px 0px 50px;
+	border: 8px solid rgb(198, 156, 108);
+}
+
+.triple-image:hover {
+	transform: scale(1.25);
+}
+
+.iframe-container1 {
+	display: flex;
+	justify-content: center;
+}
+.iframe-container2 {
+	margin: 0px 0px 0px 0px;
+	display: flex;
+	justify-content: center;
+}
+
+.tour {
+	text-align: center;
+}
+h2 {
+	font-size: 3rem;
+}
+
+h3 {
+	font-size: 2rem;
+	text-align: center;
+}
+
+.bhk {
+	margin: 100px 0px 0px 0px;
+	padding: 0;
+}
